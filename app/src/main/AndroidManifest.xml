@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ImpulseApp">
 
 
-       <!-- <activity
+        <activity
             android:name=".panel_empleado"
             android:exported="false" />
         <activity
@@ -28,9 +28,7 @@
         <activity
             android:name=".pantalla_inicio_de_sesion"
             android:exported="false" />
-        <activity
-            android:name=".pantalla_de_carga"
-            android:exported="false" />-->
+
         <activity
             android:name=".pantalla_de_carga"
             android:exported="true">
