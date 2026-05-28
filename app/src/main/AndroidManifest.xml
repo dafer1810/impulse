@@ -28,6 +28,9 @@
         <activity
             android:name=".pantalla_inicio_de_sesion"
             android:exported="false" />
+        <activity
+            android:name=".pantalla_administrador"
+            android:exported="false" />
 
         <activity
             android:name=".pantalla_de_carga"
