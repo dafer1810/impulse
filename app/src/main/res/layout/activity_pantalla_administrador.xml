@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5">
 
+
+    <!-- Encabezado Superior -->
     <!-- Encabezado Superior -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header_container"
