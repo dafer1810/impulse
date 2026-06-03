@@ -11,8 +11,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ImpulseApp">
-
-
+        <activity
+            android:name=".generar_reporte"
+            android:exported="false" />
+        <activity
+            android:name=".buscar_pruductos"
+            android:exported="false" />
+        <activity
+            android:name=".facturar_ventas"
+            android:exported="false" />
+        <activity
+            android:name=".asignar_tareas"
+            android:exported="false" />
+        <activity
+            android:name=".ver_tareas"
+            android:exported="false" />
+        <activity
+            android:name=".resumen_negocio"
+            android:exported="false" />
+        <activity
+            android:name=".control_gastos"
+            android:exported="false" />
+        <activity
+            android:name=".registro_compras"
+            android:exported="false" />
+        <activity
+            android:name=".historial_ventas"
+            android:exported="false" />
         <activity
             android:name=".panel_empleado"
             android:exported="false" />
@@ -31,7 +56,6 @@
         <activity
             android:name=".pantalla_administrador"
             android:exported="false" />
-
         <activity
             android:name=".pantalla_de_carga"
             android:exported="true">
