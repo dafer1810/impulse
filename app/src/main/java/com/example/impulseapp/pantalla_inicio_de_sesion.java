@@ -12,15 +12,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class pantalla_inicio_de_sesion extends AppCompatActivity {
 
-    // Credenciales de prueba
-    private final String ADMIN_CORREO = "admin@impulse.com";
-    private final String ADMIN_CLAVE = "admin123";
-    
-    private final String EMPLEADO_CORREO = "empleado@impulse.com";
-    private final String EMPLEADO_CLAVE = "1234";
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,11 @@ public class pantalla_inicio_de_sesion extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pantalla_inicio_de_sesion);
 
-        // Referencias a los componentes según el XML actual
+        // Inicializar Firebase
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        // Referencias a los componentes según el XML
         TextInputEditText inputEmail = findViewById(R.id.editTextEmail);
         TextInputEditText inputPassword = findViewById(R.id.editTextPassword);
         MaterialButton btnLogin = findViewById(R.id.button);
@@ -42,21 +46,7 @@ public class pantalla_inicio_de_sesion extends AppCompatActivity {
                 return;
             }
 
-            // Lógica para Administrador
-            if (email.equals(ADMIN_CORREO) && password.equals(ADMIN_CLAVE)) {
-                Intent intent = new Intent(pantalla_inicio_de_sesion.this, pantalla_administrador.class);
-                startActivity(intent);
-                finish();
-            } 
-            // Lógica para Empleado
-            else if (email.equals(EMPLEADO_CORREO) && password.equals(EMPLEADO_CLAVE)) {
-                Intent intent = new Intent(pantalla_inicio_de_sesion.this, panel_empleado.class);
-                startActivity(intent);
-                finish();
-            } 
-            else {
-                Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-            }
+            iniciarSesion(email, password);
         });
 
         // Ajuste EdgeToEdge
@@ -65,5 +55,64 @@ public class pantalla_inicio_de_sesion extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void iniciarSesion(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            verificarRol(user.getUid());
+                        }
+                    } else {
+                        Toast.makeText(pantalla_inicio_de_sesion.this, "Error de autenticación: " + 
+                                (task.getException() != null ? task.getException().getMessage() : "Desconocido"),
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void verificarRol(String uid) {
+        // Intentar buscar en administradores
+        db.collection("administradores").document(uid).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document != null && document.exists()) {
+                            // Es Administrador
+                            irAPantalla(pantalla_administrador.class);
+                        } else {
+                            // No es admin, buscar en empleados
+                            verificarEmpleado(uid);
+                        }
+                    } else {
+                        Toast.makeText(this, "Error al consultar roles", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void verificarEmpleado(String uid) {
+        db.collection("empleados").document(uid).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document != null && document.exists()) {
+                            // Es Empleado (Vendedor, Cajero, etc.)
+                            irAPantalla(panel_empleado.class);
+                        } else {
+                            Toast.makeText(this, "Usuario sin rol asignado en la base de datos", Toast.LENGTH_LONG).show();
+                            mAuth.signOut();
+                        }
+                    } else {
+                        Toast.makeText(this, "Error al consultar empleados", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void irAPantalla(Class<?> destino) {
+        Intent intent = new Intent(pantalla_inicio_de_sesion.this, destino);
+        startActivity(intent);
+        finish();
     }
 }
