@@ -19,7 +19,7 @@ public class pantalla_administrador extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_administrador);
 
         mAuth = FirebaseAuth.getInstance();
-
+        //Comentario de prueba
         // Referencia al contenedor del botón en el menú inferior
         LinearLayout btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
