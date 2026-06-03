@@ -12,7 +12,7 @@ public class pantalla_administrador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_administrador);
 
-        Button btnLogout = findViewById(R.id.btn_logout_admin);
+        Button btnLogout = findViewById(R.id.btnCerrarSesion);
         btnLogout.setOnClickListener(v -> {
             Intent intent = new Intent(pantalla_administrador.this, pantalla_inicio_de_sesion.class);
             startActivity(intent);
