@@ -2,8 +2,6 @@ package com.example.impulseapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,15 +21,12 @@ public class pantalla_administrador extends AppCompatActivity {
 
         MaterialButton btnInventario = findViewById(R.id.btnInventario);
         MaterialButton btnVentas = findViewById(R.id.btnVentas);
-        MaterialButton btnCompras = findViewById(R.id.btnCompras);
-        MaterialButton btnGastos = findViewById(R.id.btnGastos);
-        MaterialButton btnResumenNegocio = findViewById(R.id.btnResumenNegocio);
         MaterialButton btnAlertasStock = findViewById(R.id.btnAlertasStock);
         MaterialButton btnAsignarTareas = findViewById(R.id.btnAsignarTareas);
         MaterialButton btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
         btnInventario.setOnClickListener(v -> {
-            Intent intent = new Intent(pantalla_administrador.this, buscar_pruductos.class);
+            Intent intent = new Intent(pantalla_administrador.this, ver_inventario.class);
             startActivity(intent);
         });
 
@@ -40,35 +35,14 @@ public class pantalla_administrador extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnCompras.setOnClickListener(v -> {
-            Intent intent = new Intent(pantalla_administrador.this, registro_compras.class);
-            startActivity(intent);
-        });
-
-        btnGastos.setOnClickListener(v -> {
-            Intent intent = new Intent(pantalla_administrador.this, control_gastos.class);
-            startActivity(intent);
-        });
-
-        btnResumenNegocio.setOnClickListener(v -> {
-            Intent intent = new Intent(pantalla_administrador.this, resumen_negocio.class);
-            startActivity(intent);
-        });
-
         btnAlertasStock.setOnClickListener(v -> {
-            // Podrías reutilizar buscar_productos con un filtro de stock bajo
+            // Reutilizamos la búsqueda de productos para ver stock bajo
             Intent intent = new Intent(pantalla_administrador.this, buscar_pruductos.class);
             startActivity(intent);
         });
 
         btnAsignarTareas.setOnClickListener(v -> {
-            Intent intent = new Intent(pantalla_administrador.this, asignar_tareas.class);
-            startActivity(intent);
-        });
-
-        // Botón Gestionar Inventario
-        findViewById(R.id.btnInventario).setOnClickListener(v -> {
-            Intent intent = new Intent(pantalla_administrador.this, gestion_inventario.class);
+            Intent intent = new Intent(pantalla_administrador.this, ver_tareas.class);
             startActivity(intent);
         });
 

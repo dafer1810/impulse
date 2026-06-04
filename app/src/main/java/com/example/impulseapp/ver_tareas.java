@@ -1,5 +1,6 @@
 package com.example.impulseapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ public class ver_tareas extends AppCompatActivity {
     private List<Tarea> listaTareas;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-    private MaterialButton btnConsultarTareas;
+    private MaterialButton btnConsultarTareas, btnNuevaTarea, btnVolverTareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +40,33 @@ public class ver_tareas extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         rvTareas = findViewById(R.id.rvTareas);
         btnConsultarTareas = findViewById(R.id.btnConsultarTareas);
+        btnNuevaTarea = findViewById(R.id.btnNuevaTarea);
+        btnVolverTareas = findViewById(R.id.btnVolverTareas);
+
+        // Verificar rol para mostrar/ocultar botón de nueva tarea
+        verificarRol();
 
         listaTareas = new ArrayList<>();
-        adapter = new TareaAdapter(listaTareas);
+        adapter = new TareaAdapter(listaTareas, tarea -> {
+            // Al hacer clic, abrimos para editar/ver detalle
+            Intent intent = new Intent(this, asignar_tareas.class);
+            intent.putExtra("tarea_id", tarea.getId());
+            intent.putExtra("modo_edicion", true);
+            startActivity(intent);
+        });
 
         rvTareas.setLayoutManager(new LinearLayoutManager(this));
         rvTareas.setAdapter(adapter);
 
-        // Configurar el botón para realizar la búsqueda manual
-        btnConsultarTareas.setOnClickListener(v -> {
-            cargarTareas();
+        btnConsultarTareas.setOnClickListener(v -> cargarTareas());
+        
+        btnNuevaTarea.setOnClickListener(v -> {
+            Intent intent = new Intent(this, asignar_tareas.class);
+            startActivity(intent);
         });
 
-        // Cargar automáticamente al entrar
+        btnVolverTareas.setOnClickListener(v -> finish());
+
         cargarTareas();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -59,6 +74,27 @@ public class ver_tareas extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarTareas();
+    }
+
+    private void verificarRol() {
+        String uid = mAuth.getUid();
+        if (uid == null) return;
+
+        db.collection("administradores").document(uid).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        btnNuevaTarea.setVisibility(android.view.View.VISIBLE);
+                    } else {
+                        btnNuevaTarea.setVisibility(android.view.View.GONE);
+                    }
+                })
+                .addOnFailureListener(e -> btnNuevaTarea.setVisibility(android.view.View.GONE));
     }
 
     private void cargarTareas() {
@@ -74,6 +110,7 @@ public class ver_tareas extends AppCompatActivity {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             try {
                                 Tarea tarea = document.toObject(Tarea.class);
+                                tarea.setId(document.getId());
                                 listaTareas.add(tarea);
                             } catch (Exception e) {
                                 e.printStackTrace();

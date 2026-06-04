@@ -12,9 +12,15 @@ import java.util.List;
 public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHolder> {
 
     private final List<Tarea> listaTareas;
+    private OnItemClickListener listener;
 
-    public TareaAdapter(List<Tarea> listaTareas) {
+    public interface OnItemClickListener {
+        void onItemClick(Tarea tarea);
+    }
+
+    public TareaAdapter(List<Tarea> listaTareas, OnItemClickListener listener) {
         this.listaTareas = listaTareas;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,7 +41,7 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         holder.txtFecha.setText("Fecha: " + (tarea.getFecha() != null ? tarea.getFecha() : "Sin fecha"));
 
         // Cambiar color del badge según el estado
-        String estado = tarea.getEstado() != null ? tarea.getEstado() : "";
+        String estado = tarea.getEstado() != null ? tarea.getEstado() : "Pendiente";
 
         int backgroundRes;
         int textColorRes;
@@ -47,13 +53,18 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
             backgroundRes = R.drawable.bg_badge_yellow;
             textColorRes = android.R.color.black;
         } else {
-            // Por defecto "Pendiente" o errores
             backgroundRes = R.drawable.bg_badge_red;
             textColorRes = android.R.color.white;
         }
 
         holder.txtEstado.setBackgroundResource(backgroundRes);
         holder.txtEstado.setTextColor(ContextCompat.getColor(holder.itemView.getContext(), textColorRes));
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(tarea);
+            }
+        });
     }
 
     @Override
