@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class panel_empleado extends AppCompatActivity {
@@ -24,8 +25,33 @@ public class panel_empleado extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        // Referencia al botón de cerrar sesión
-        Button btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        // Referencias a los botones
+        MaterialButton btnFacturarVentas = findViewById(R.id.btnFacturarVentas);
+        MaterialButton btnBuscarProducto = findViewById(R.id.btnBuscarProducto);
+        MaterialButton btnVerTareas = findViewById(R.id.btnVerTareas);
+        MaterialButton btnHistorialVentas = findViewById(R.id.btnHistorialVentas);
+        MaterialButton btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+
+        // Configuración de clics
+        btnFacturarVentas.setOnClickListener(v -> {
+            Intent intent = new Intent(panel_empleado.this, facturar_ventas.class);
+            startActivity(intent);
+        });
+
+        btnBuscarProducto.setOnClickListener(v -> {
+            Intent intent = new Intent(panel_empleado.this, buscar_pruductos.class);
+            startActivity(intent);
+        });
+
+        btnVerTareas.setOnClickListener(v -> {
+            Intent intent = new Intent(panel_empleado.this, ver_tareas.class);
+            startActivity(intent);
+        });
+
+        btnHistorialVentas.setOnClickListener(v -> {
+            Intent intent = new Intent(panel_empleado.this, historial_ventas.class);
+            startActivity(intent);
+        });
 
         btnCerrarSesion.setOnClickListener(v -> {
             // 1. Cerrar sesión en Firebase

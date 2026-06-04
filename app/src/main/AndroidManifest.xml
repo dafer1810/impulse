@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImpulseApp">
         <activity
+            android:name=".detalle_venta"
+            android:exported="false" />
+        <activity
             android:name=".generar_reporte"
             android:exported="false" />
         <activity
