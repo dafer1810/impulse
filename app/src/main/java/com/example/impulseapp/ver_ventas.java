@@ -18,7 +18,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class historial_ventas extends AppCompatActivity {
+public class ver_ventas extends AppCompatActivity {
 
     private RecyclerView rvVentas;
     private VentaAdapter adapter;
@@ -29,7 +29,7 @@ public class historial_ventas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_historial_ventas);
+        setContentView(R.layout.activity_ver_ventas);
 
         db = FirebaseFirestore.getInstance();
         rvVentas = findViewById(R.id.rvVentas);
@@ -65,7 +65,7 @@ public class historial_ventas extends AppCompatActivity {
                             Toast.makeText(this, "No hay ventas registradas", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(this, "Error al cargar el historial", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Error al cargar ventas", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
