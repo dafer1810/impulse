@@ -57,6 +57,12 @@
             android:name=".pantalla_administrador"
             android:exported="false" />
         <activity
+            android:name=".gestion_inventario"
+            android:exported="false" />
+        <activity
+            android:name=".ver_inventario"
+            android:exported="false" />
+        <activity
             android:name=".pantalla_de_carga"
             android:exported="true">
             <intent-filter>

@@ -23,6 +23,12 @@ public class pantalla_administrador extends AppCompatActivity {
         // Referencia al contenedor del botón en el menú inferior
         LinearLayout btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
+        // Botón Gestionar Inventario
+        findViewById(R.id.btnInventario).setOnClickListener(v -> {
+            Intent intent = new Intent(pantalla_administrador.this, gestion_inventario.class);
+            startActivity(intent);
+        });
+
         btnCerrarSesion.setOnClickListener(v -> {
             // 1. Cerrar sesión en Firebase
             mAuth.signOut();
