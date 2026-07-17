@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <LinearLayout
+        android:id="@+id/layoutHeaderTareas"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/rayitoimpulse" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Mis Tareas"
+            android:textColor="#212529"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnConsultarTareas"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:text="BUSCAR TAREAS EN FIREBASE"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:backgroundTint="#E01717"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:icon="@android:drawable/ic_menu_rotate"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeaderTareas" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTareas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/btnConsultarTareas"
+        app:layout_constraintBottom_toTopOf="@id/btnNuevaTarea" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNuevaTarea"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#2E7D32"
+        android:text="+ Asignar Nueva Tarea"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toTopOf="@id/btnVolverTareas" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVolverTareas"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#E01717"
+        android:text="Volver"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
