@@ -11,7 +11,7 @@
 
 ## 📱 Descripción del Proyecto
 
-**Impulse** es una solución móvil diseñada para pequeños y medianos negocios que necesitan gestionar inventario de forma ágil y efectiva. La aplicación permite el control completo de productos, inventario, ventas y asignación de tareas desde cualquier dispositivo Android.
+**Impulse** es una solución móvil diseñada para pequeños y medianos negocios que necesitan gestionar inventario de forma ágil y efectiva. La aplicación permite el control completo de productos, ventas y tareas de forma intuitiva y eficiente.
 
 ### ✨ Características Principales
 
@@ -169,7 +169,7 @@ cd impulse
 
 ## 🤝 Contribución
 
-Este es un proyecto de portafolio. Las sugerencias y feedback son bienvenidos.
+Este es un proyecto colaborativo. Las sugerencias y feedback son bienvenidos.
 
 ---
 
@@ -179,16 +179,21 @@ Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE para más deta
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores
 
-**Dafer** - [GitHub Profile](https://github.com/dafer1810)
+| Nombre | GitHub |
+|--------|--------|
+| **Daniela Fernanda Moreno Sanchez** | [@dafer1810](https://github.com/dafer1810) |
+| **Darcy Lizbeth Yandi Flor** | [GitHub Profile](https://github.com) |
+| **Cesar Mauricio Florez Ruiz** | [@CesarMauriciof](https://github.com/CesarMauriciof) |
+| **Keiner Alex Buitron Pareja** | [GitHub Profile](https://github.com) |
 
 ---
 
 ## 📞 Contacto
 
-Para consultas sobre este proyecto, puedes contactarme a través de [GitHub Issues](https://github.com/dafer1810/impulse/issues).
+Para consultas sobre este proyecto, puedes contactarnos a través de [GitHub Issues](https://github.com/dafer1810/impulse/issues).
 
 ---
 
-**Última actualización:** Julio 2026
+**Última actualización:** Octubre 2026
