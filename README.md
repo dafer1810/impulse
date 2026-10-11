@@ -11,7 +11,7 @@
 
 ## 📱 Descripción del Proyecto
 
-**Impulse** es una solución móvil diseñada para pequeños y medianos negocios que necesitan gestionar inventario de forma ágil y efectiva. La aplicación permite el control completo de productos, ventas y tareas de forma intuitiva y eficiente.
+**Impulse** es una solución móvil diseñada para pequeños y medianos negocios que necesitan gestionar inventario de forma ágil y efectiva. La aplicación permite el control completo de productos, ventas y tareas comerciales desde una sola interfaz intuitiva y eficiente.
 
 ### ✨ Características Principales
 
@@ -184,9 +184,9 @@ Este proyecto está bajo la Licencia MIT - ver el archivo LICENSE para más deta
 | Nombre | GitHub |
 |--------|--------|
 | **Daniela Fernanda Moreno Sanchez** | [@dafer1810](https://github.com/dafer1810) |
-| **Darcy Lizbeth Yandi Flor** | [GitHub Profile](https://github.com) |
+| **Darcy Lizbeth Yandi Flor** | [@DLizbeth](https://github.com/DLizbeth) |
 | **Cesar Mauricio Florez Ruiz** | [@CesarMauriciof](https://github.com/CesarMauriciof) |
-| **Keiner Alex Buitron Pareja** | [GitHub Profile](https://github.com) |
+| **Keiner Alex Buitron Pareja** | [@KeinerBuitron](https://github.com/KeinerBuitron) |
 
 ---
 
